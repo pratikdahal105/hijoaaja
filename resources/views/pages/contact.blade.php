@@ -33,7 +33,7 @@
                 </form>
             </div>
             <div class="col-md-4 col-lg-4 col-xl-4">
-                <p>Contact Details</p>
+                <p>Contact Details:</p>
             </div>
         </div>
     </div>
