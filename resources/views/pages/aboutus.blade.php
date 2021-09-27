@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url('assets/img/about.jpg')">
+    <header class="masthead" style="background-image: url('assets/img/about.jpg'); opacity: 0.7;">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </header>
-<div class="container">
+    <div class="container">
     <div class="row text-justify">
         <div>
             <h4 class="text-center">About Us</h4>
@@ -35,6 +35,31 @@
     </div>
 </div>
 
-
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        let scrollPos = 1;
+        const mainNav = document.getElementById('mainNav');
+        const headerHeight = mainNav.clientHeight;
+        window.addEventListener('scroll', function() {
+            const currentTop = document.body.getBoundingClientRect().top * -1;
+            if ( currentTop < scrollPos) {
+                // Scrolling Up
+                if (currentTop > 0 && mainNav.classList.contains('is-fixed')) {
+                    mainNav.classList.add('is-visible');
+                } else {
+                    console.log(123);
+                    mainNav.classList.add('is-visible', 'is-fixed');
+                }
+            } else {
+                // Scrolling Down
+                mainNav.classList.add(['is-visible']);
+                if (currentTop > headerHeight && !mainNav.classList.contains('is-fixed')) {
+                    mainNav.classList.add('is-fixed');
+                }
+            }
+            scrollPos = currentTop;
+        });
+    })
+</script>
 
 @endsection
