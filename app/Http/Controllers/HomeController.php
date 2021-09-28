@@ -14,10 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         $dt = Carbon::now()->toDateString();
-        $news_data = Featured::with(array('news' => function($query){
-            $query->orderBy('publish_date', 'DESC');
-        }))->whereDate('till', '>=', $dt)->get();
-//        dd($news_data);
+        $news_data = Featured::whereDate('till', '>=', $dt)
+            ->join('news', 'news.id', '=', 'featured.news_id')
+            ->orderBy('news.publish_date', 'DESC')
+            ->get();
         $videos = Videos::orderBy('publish_date', 'DESC')->get();
         return view('pages.home', compact('news_data', 'videos'));
     }
