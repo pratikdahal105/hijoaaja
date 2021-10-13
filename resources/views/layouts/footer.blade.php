@@ -26,7 +26,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="#!" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="https://www.facebook.com/%E0%A4%B9%E0%A4%BF%E0%A4%9C%E0%A5%8B%E0%A4%86%E0%A4%9C-%E0%A4%A1%E0%A4%9F-%E0%A4%95%E0%A4%AE-690643947725853" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#!">
+                        <a href="#!" target="_blank">
                             <span class="fa-stack fa-lg">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
