@@ -7,9 +7,7 @@
                 <h3>{{$news->title}}</h3>
                 {!! $news->body !!}
                 <p class="post-meta font-weight-light">
-                    Posted by
-                    {{$news->author}}
-                    on {{$news->publish_date}}
+                    Posted on {{$news->publish_date}}
                 </p>
             </div>
             <div class="col-md-4 col-lg-4 col-xl-4">
