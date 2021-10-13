@@ -105,6 +105,12 @@
               </a>
           </li>
           <li class="nav-item">
+              <a class="nav-link" href="{{route('gallery.list')}}" role="button">
+                  <i class="fa fa-image"></i>
+                  <span>Gallery</span>
+              </a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{{route('video.list')}}" role="button">
                   <i class="fa fa-paper-plane"></i>
                   <span>Contact Mails</span>

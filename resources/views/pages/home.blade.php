@@ -17,7 +17,7 @@
 <div class="container mt-5">
     <div class="row pt-5">
         <div class="col-md-7 col-lg-7 col-xl-7">
-        @if($news_data[0] ?? null)
+        @if(!$news_data->isEmpty())
                 <h4 class="mt-2">Featured News</h4>
         @foreach($news_data as $key => $news)
             @if($key == 0)
@@ -38,7 +38,7 @@
                 </div>
                 <!-- Divider-->
                 <hr class="my-4" />
-
+                @if(!$gallerys->isEmpty())
                 <h4>Gallery</h4>
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     {{--                <div class="carousel-indicators">--}}
@@ -47,18 +47,19 @@
                     {{--                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>--}}
                     {{--                </div>--}}
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{asset('assets/img/home-bg.jpg')}}" class="d-block w-100" alt="...">
-                            <p class="font-weight-light font-italic">Some representative placeholder content for the first slide.</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('assets/img/about.jpg')}}" class="d-block w-100" alt="...">
-                            <p class="font-weight-light font-italic">Some representative placeholder content for the second slide.</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{asset('assets/img/home-bg.jpg')}}" class="d-block w-100" alt="...">
-                            <p class="font-weight-light font-italic">Some representative placeholder content for the third slide.</p>
-                        </div>
+                        @foreach($gallerys as $key => $gallery)
+                            @if($key == 0)
+                                <div class="carousel-item active">
+                                    <img src="{{asset('uploads/news/gallery/'.$gallery->image)}}" class="d-block w-100" alt="...">
+                                    <p class="font-weight-light font-italic">{{$gallery->caption}}</p>
+                                </div>
+                            @else
+                                <div class="carousel-item">
+                                    <img src="{{asset('uploads/news/gallery/'.$gallery->image)}}" class="d-block w-100" alt="...">
+                                    <p class="font-weight-light font-italic">{{$gallery->caption}}</p>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -70,6 +71,7 @@
                     </button>
                 </div>
                 <hr class="my-4" />
+            @endif
             @else
                     <!-- Post preview-->
                         <div class="post-preview" id="{{$news->news->slug}}">

@@ -35,7 +35,8 @@ Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'au
     Route::get('admin', [BackendController::class, 'index'])->name('admin');
     Route::get('news', [NewsController::class, 'index'])->name('news.list');
     Route::get('category', [NewsController::class, 'indexCategory'])->name('category.list');
-    Route::get('video', [NewsController::class, 'indexVideo'])->name('video.list');
+    Route::get('video', [NewsController::class, 'indexGallery'])->name('gallery.list');
+    Route::get('gallery', [NewsController::class, 'indexVideo'])->name('video.list');
     Route::any('categoryCreate', [NewsController::class, 'categoryCreate'])->name('category.create');
     Route::any('categoryEdit/{category}', [NewsController::class, 'categoryEdit'])->name('category.edit');
     Route::post('categoryDelete', [NewsController::class, 'categoryDelete'])->name('category.delete');
@@ -47,6 +48,10 @@ Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'au
     Route::any('videoCreate', [NewsController::class, 'videoCreate'])->name('video.create');
     Route::post('videoDelete', [NewsController::class, 'videoDelete'])->name('video.delete');
     Route::any('videoEdit/{category}', [NewsController::class, 'videoEdit'])->name('video.edit');
+    Route::any('galleryCreate', [NewsController::class, 'galleryCreate'])->name('gallery.create');
+    Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
+    Route::any('galleryEdit/{category}', [NewsController::class, 'galleryEdit'])->name('gallery.edit');
+    Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
 });
 
 //Auth Routes

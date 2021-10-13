@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Featured;
+use App\Models\Gallery;
 use App\Models\News;
 use App\Models\Videos;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -83,7 +84,7 @@ class NewsController extends Controller
     public function newsDelete(Request $request){
         $news = News::where('slug', $request->slug)->first();
         $news->delete();
-        return redirect()->route('news.list')->with('warning', 'Category Deleted Successfully!');
+        return redirect()->route('news.list')->with('warning', 'News Deleted Successfully!');
     }
 
     public function indexCategory(){
@@ -215,5 +216,62 @@ class NewsController extends Controller
             return redirect()->back();
         }
         return $imageName;
+    }
+
+    public function indexGallery(){
+        $gallerys = Gallery::all();
+        return view($this->path.'gallery.list', compact('gallerys'));
+    }
+
+    public function galleryCreate(Request $request){
+        if ($request->isMethod('get')){
+            $gallery = null;
+            return view($this->path.'gallery.create', compact('gallery'));
+        }
+        if ($request->isMethod('post')) {
+            try {
+                $data = new Gallery();
+                if ($request->hasFile('image')) {
+                    $file = $request->file('image');
+                    $uploadPath = public_path('uploads/news/gallery/');
+                    $data['image'] = $this->fileUpload($file, $uploadPath);
+                }
+                $data['caption'] = $request->caption;
+                $data->save();
+                return redirect()->route('gallery.list')->with('success', 'Gallery Item Created Successfully!');
+            }catch (\Exception $e){
+                return redirect()->back()->with('error', 'Make Sure All Required Fields are Filled!');
+            }
+        }
+    }
+
+    public function galleryEdit(Request $request, $gal){
+        if ($request->isMethod('get')){
+            $gallery = Gallery::where('id',$gal)->first();
+            return view($this->path.'gallery.edit', compact('gallery'));
+        }
+        if ($request->isMethod('post')) {
+            try {
+                $data = Gallery::findOrFail($gal);
+                if ($request->hasFile('image')) {
+                    $file = $request->file('image');
+                    $uploadPath = public_path('uploads/news/gallery/');
+                    File::delete($uploadPath.$data->image);
+                    $data['image'] = $this->fileUpload($file, $uploadPath);
+                }
+                $data['caption'] = $request->caption;
+                $data->update();
+                return redirect()->route('gallery.list')->with('success', 'Gallery Item Updated Successfully!');
+            }catch (\Exception $e){
+                return redirect()->back()->with('error', 'Unexpected Error!');
+            }
+        }
+    }
+
+    public function galleryDelete(Request $request){
+        $gallery = Gallery::findOrFail($request->id);
+        File::delete(public_path('uploads/news/gallery/').$gallery->image);
+        $gallery->delete();
+        return redirect()->route('gallery.list')->with('warning', 'Gallery Item Deleted Successfully!');
     }
 }

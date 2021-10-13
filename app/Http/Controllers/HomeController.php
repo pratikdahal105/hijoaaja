@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Featured;
+use App\Models\Gallery;
 use App\Models\News;
 use App\Models\Videos;
 use Carbon\Carbon;
@@ -14,12 +15,13 @@ class HomeController extends Controller
     public function index()
     {
         $dt = Carbon::now()->toDateString();
+        $gallerys = Gallery::all();
         $news_data = Featured::whereDate('till', '>=', $dt)
             ->join('news', 'news.id', '=', 'featured.news_id')
             ->orderBy('news.publish_date', 'DESC')
             ->get();
         $videos = Videos::orderBy('publish_date', 'DESC')->get();
-        return view('pages.home', compact('news_data', 'videos'));
+        return view('pages.home', compact('news_data', 'videos', 'gallerys'));
     }
 
     public function newsAll(){
