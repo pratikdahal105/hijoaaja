@@ -30,11 +30,11 @@
                         @endif
                         <h4 class="post-subtitle">{{$news->news->summary}}</h4>
                     </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#{{$news->news->slug}}">{{$news->news->author}}</a>
-                        on {{$news->news->publish_date}}
-                    </p>
+{{--                    <p class="post-meta">--}}
+{{--                        Posted by--}}
+{{--                        <a href="#{{$news->news->slug}}">{{$news->news->author}}</a>--}}
+{{--                        on {{$news->news->publish_date}}--}}
+{{--                    </p>--}}
                 </div>
                 <!-- Divider-->
                 <hr class="my-4" />
@@ -80,11 +80,11 @@
                                 @endif
                                 <h4 class="post-subtitle">{{$news->news->summary}}</h4>
                             </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#{{$news->news->slug}}">{{$news->news->author}}</a>
-                                on {{$news->news->publish_date}}
-                            </p>
+{{--                            <p class="post-meta">--}}
+{{--                                Posted by--}}
+{{--                                <a href="#{{$news->news->slug}}">{{$news->news->author}}</a>--}}
+{{--                                on {{$news->news->publish_date}}--}}
+{{--                            </p>--}}
                         </div>
                         <!-- Divider-->
                         <hr class="my-4" />
@@ -112,9 +112,9 @@
                         </iframe>
                     </div>
                     <span class="post-subtitle">{{$video->caption}}</span>
-                    <span class="post-meta">
-                        (Posted on {{$video->publish_date}})
-                    </span>
+{{--                    <span class="post-meta">--}}
+{{--                        (Posted on {{$video->publish_date}})--}}
+{{--                    </span>--}}
                 </div>
             @endforeach
         </div>

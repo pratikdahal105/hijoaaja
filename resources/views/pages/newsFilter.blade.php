@@ -11,7 +11,7 @@
                     <a class="dropdown-item" href="{{route('news.all')}}">All News</a>
                     @foreach($cat as $news)
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{route('news.filter', $news->category->name)}}">{{$news->category->name}}</a>
+                        <a class="dropdown-item" href="{{route('news.filter', $news->name)}}">{{$news->name}}</a>
                     @endforeach
                 </div>
             </li>
@@ -33,11 +33,11 @@
                                 <img width="100%" src="{{asset('uploads/news/thumbnail/'.$news->thumbnail)}}">
                                 <h4 class="post-subtitle">{{$news->summary}}</h4>
                             </a>
-                            <p class="post-meta">
-                                Posted by
-                                <a href="#{{$news->slug}}">{{$news->author}}</a>
-                                on {{$news->publish_date}}
-                            </p>
+{{--                            <p class="post-meta">--}}
+{{--                                Posted by--}}
+{{--                                <a href="#{{$news->slug}}">{{$news->author}}</a>--}}
+{{--                                on {{$news->publish_date}}--}}
+{{--                            </p>--}}
                         </div>
                         <!-- Divider-->
                         <hr class="my-4" />

@@ -22,9 +22,9 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('news.all')}}">All News</a>
-                    @foreach($news_data as $news)
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{route('news.filter', $news->category->name)}}">{{$news->category->name}}</a>
+                    @foreach($category as $news)
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{route('news.filter', $news->name)}}">{{$news->name}}</a>
                     @endforeach
                 </div>
             </li>
@@ -44,11 +44,11 @@
                             @endif
                             <h4 class="post-subtitle">{{$news->summary}}</h4>
                         </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#{{$news->slug}}">{{$news->author}}</a>
-                            on {{$news->publish_date}}
-                        </p>
+{{--                        <p class="post-meta">--}}
+{{--                            Posted by--}}
+{{--                            <a href="#{{$news->slug}}">{{$news->author}}</a>--}}
+{{--                            on {{$news->publish_date}}--}}
+{{--                        </p>--}}
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />

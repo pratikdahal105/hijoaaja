@@ -23,8 +23,9 @@ class HomeController extends Controller
     }
 
     public function newsAll(){
-        $news_data = News::with('category')->orderBy('publish_date', 'DESC')->get();
-        return view('pages.news', compact('news_data'));
+        $category = Category::all();
+        $news_data = News::with('category')->orderBy('created_at', 'DESC')->get();
+        return view('pages.news', compact('news_data', 'category'));
     }
 
     public function newsDetail($slug){
@@ -35,7 +36,7 @@ class HomeController extends Controller
     public function newsFilter($category){
         $category = Category::where('name', $category)->first();
         $news_data = News::where('category_id', $category->id)->orderBy('publish_date', 'DESC')->get();
-        $cat = News::with('category')->get();
+        $cat = Category::all();
         return view('pages.newsFilter', compact('news_data', 'cat', 'category'));
     }
 
