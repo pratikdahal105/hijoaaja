@@ -119,6 +119,7 @@
 {{--                    </span>--}}
                 </div>
             @endforeach
+            @include('pages.advertisement')
         </div>
     </div>
 </div>

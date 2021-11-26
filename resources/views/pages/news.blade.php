@@ -59,7 +59,7 @@
                 @endif
             </div>
             <div class="col-md-4 col-lg-4 col-xl-4">
-
+                @include('pages.advertisement')
             </div>
         </div>
     </div>

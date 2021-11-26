@@ -117,6 +117,12 @@
               </a>
           </li>
           <li class="nav-item">
+              <a class="nav-link" href="{{route('ad.list')}}" role="button">
+                  <i class="fa fa-link"></i>
+                  <span>Advertisement</span>
+              </a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{{route('video.list')}}" role="button">
                   <i class="fa fa-user-tie"></i>
                   <span>User</span>

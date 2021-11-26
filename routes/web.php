@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -51,7 +52,10 @@ Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'au
     Route::any('galleryCreate', [NewsController::class, 'galleryCreate'])->name('gallery.create');
     Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
     Route::any('galleryEdit/{category}', [NewsController::class, 'galleryEdit'])->name('gallery.edit');
-    Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
+    Route::any('ad', [AdvertisementController::class, 'index'])->name('ad.list');
+    Route::any('adCreate', [AdvertisementController::class, 'adCreate'])->name('ad.create');
+    Route::post('adDelete', [AdvertisementController::class, 'adDelete'])->name('ad.delete');
+    Route::any('adEdit/{category}', [AdvertisementController::class, 'adEdit'])->name('ad.edit');
 });
 
 //Auth Routes
