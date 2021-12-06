@@ -30,6 +30,7 @@ Route::group(['namespace'=>'frontend'], function(){
     Route::get('newsFilter/{category}', [HomeController::class, 'newsFilter'])->name('news.filter');
     Route::get('aboutUs', [HomeController::class, 'aboutUs'])->name('about.us');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+    Route::post('contact', [HomeController::class, 'contact'])->name('contact');
 });
 
 Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'auth'], function(){

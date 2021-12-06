@@ -12,6 +12,6 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'message', 'status',
+        'name', 'email', 'subject', 'message', 'status',
     ];
 }

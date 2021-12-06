@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Featured;
 use App\Models\Gallery;
 use App\Models\News;
@@ -46,7 +47,24 @@ class HomeController extends Controller
         return view('pages.aboutus');
     }
 
-    public function contact(){
-        return view('pages.contact');
+    public function contact(Request $request){
+        if($request->isMethod('get')){
+            return view('pages.contact');
+        }
+        if($request->isMethod('post')){
+            if ($request->check == null){
+                $conatct = new Contact();
+                $data['subject'] = $request->subject;
+                $data['email'] = $request->email;
+                $data['message'] = $request->email;
+                if($conatct->create($data)){
+                    return redirect()->back()->with('success', 'Message sent successfully!');
+                }
+                else{
+                    return redirect()->back()->with('error', 'Oops something went wrong!');
+                }
+            }
+            return redirect()->back()->with('success', 'Message sent successfully!');
+        }
     }
 }
