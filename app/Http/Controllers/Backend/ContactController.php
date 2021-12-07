@@ -43,6 +43,6 @@ class ContactController extends Controller
         ];
 
         Mail::to($detail['to'])->send(new ReplyMail($detail));
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Reply Sent Successfully!');
     }
 }
