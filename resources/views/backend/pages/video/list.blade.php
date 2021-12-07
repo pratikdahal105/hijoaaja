@@ -16,7 +16,9 @@
                     <th>S.N.</th>
                     <th>Url</th>
                     <th>Publish Date</th>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                     <th>Action</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -25,9 +27,11 @@
                     <td>{{++$key}}</td>
                     <td>{{$video->url}}</td>
                     <td>{{$video->publish_date}}</td>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                     <td>
                         <a href="{{route('video.edit', $video)}}" class="btn btn-xs" title="Details & Edit"><i class="fa fa-pen"></i></a>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
                 </tbody>

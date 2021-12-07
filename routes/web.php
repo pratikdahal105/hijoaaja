@@ -39,55 +39,55 @@ Route::group(['namespace'=>'frontend'], function(){
 
 Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'auth'], function(){
 
-    Route::group(['name'=>'dashboard'], function(){
+    Route::group(['name'=>'dashboard', 'middleware' => 'creator'], function(){
         Route::get('admin', [BackendController::class, 'index'])->name('admin');
     });
 
-    Route::group(['name'=>'category'], function(){
+    Route::group(['name'=>'category', 'middleware' => 'creator'], function(){
         Route::get('category', [NewsController::class, 'indexCategory'])->name('category.list');
         Route::any('categoryCreate', [NewsController::class, 'categoryCreate'])->name('category.create');
-        Route::any('categoryEdit/{category}', [NewsController::class, 'categoryEdit'])->name('category.edit');
-        Route::post('categoryDelete', [NewsController::class, 'categoryDelete'])->name('category.delete');
+        Route::any('categoryEdit/{category}', [NewsController::class, 'categoryEdit'])->name('category.edit')->middleware('reviewer');
+        Route::post('categoryDelete', [NewsController::class, 'categoryDelete'])->name('category.delete')->middleware('reviewer');
     });
 
-    Route::group(['name'=>'news'], function(){
+    Route::group(['name'=>'news', 'middleware' => 'creator'], function(){
         Route::get('news', [NewsController::class, 'index'])->name('news.list');
         Route::any('newsCreate', [NewsController::class, 'newsCreate'])->name('news.create');
-        Route::any('newsEdit/{slug}', [NewsController::class, 'newsEdit'])->name('news.edit');
-        Route::post('addFeatured/{slug}', [NewsController::class, 'addFeatured'])->name('add.featured');
-        Route::get('removeFeatured/{slug}', [NewsController::class, 'removeFeatured'])->name('remove.featured');
-        Route::post('newsDelete', [NewsController::class, 'newsDelete'])->name('news.delete');
+        Route::any('newsEdit/{slug}', [NewsController::class, 'newsEdit'])->name('news.edit')->middleware('reviewer');;
+        Route::post('addFeatured/{slug}', [NewsController::class, 'addFeatured'])->name('add.featured')->middleware('reviewer');;
+        Route::get('removeFeatured/{slug}', [NewsController::class, 'removeFeatured'])->name('remove.featured')->middleware('reviewer');;
+        Route::post('newsDelete', [NewsController::class, 'newsDelete'])->name('news.delete')->middleware('reviewer');;
     });
 
-    Route::group(['name'=>'video'], function(){
+    Route::group(['name'=>'video', 'middleware' => 'creator'], function(){
         Route::get('video', [NewsController::class, 'indexGallery'])->name('gallery.list');
         Route::any('videoCreate', [NewsController::class, 'videoCreate'])->name('video.create');
-        Route::post('videoDelete', [NewsController::class, 'videoDelete'])->name('video.delete');
+        Route::post('videoDelete', [NewsController::class, 'videoDelete'])->name('video.delete')->middleware('reviewer');;
         Route::any('videoEdit/{category}', [NewsController::class, 'videoEdit'])->name('video.edit');
     });
 
-    Route::group(['name'=>'gallery'], function(){
+    Route::group(['name'=>'gallery', 'middleware' => 'creator'], function(){
         Route::get('gallery', [NewsController::class, 'indexVideo'])->name('video.list');
         Route::any('galleryCreate', [NewsController::class, 'galleryCreate'])->name('gallery.create');
-        Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
+        Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete')->middleware('reviewer');;
         Route::any('galleryEdit/{category}', [NewsController::class, 'galleryEdit'])->name('gallery.edit');
     });
 
-    Route::group(['name'=>'contact'], function(){
+    Route::group(['name'=>'contact', 'middleware' => 'reviewer'], function(){
         Route::get('contact', [ContactController::class, 'index'])->name('contact.list');
         Route::get('details/{id}', [ContactController::class, 'messageDetail'])->name('contact.detail');
         Route::get('notSeen/{id}', [ContactController::class, 'messageNotSeen'])->name('contact.not.seen');
         Route::post('sendMail', [ContactController::class, 'mailSend'])->name('contact.send.mail');
     });
 
-    Route::group(['name'=>'advertisement'], function(){
+    Route::group(['name'=>'advertisement', 'middleware' => 'reviewer'], function(){
         Route::any('ad', [AdvertisementController::class, 'index'])->name('ad.list');
         Route::any('adCreate', [AdvertisementController::class, 'adCreate'])->name('ad.create');
         Route::post('adDelete', [AdvertisementController::class, 'adDelete'])->name('ad.delete');
         Route::any('adEdit/{category}', [AdvertisementController::class, 'adEdit'])->name('ad.edit');
     });
 
-    Route::group(['name'=>'user'], function(){
+    Route::group(['name'=>'user', 'middleware' => 'superadmin'], function(){
         Route::get('user', [UserController::class, 'index'])->name('user.list');
         Route::any('userCreate', [UserController::class, 'userCreate'])->name('user.create');
         Route::post('userDelete', [UserController::class, 'userDelete'])->name('user.delete');

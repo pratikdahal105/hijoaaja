@@ -17,8 +17,10 @@
                     <th>Title</th>
                     <th>Views</th>
                     <th>Category</th>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                     <th>Featured?</th>
                     <th>Action</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,7 @@
                         <td>{{$news->title}}</td>
                         <td>{{$news->views}}</td>
                         <td>{{$news->category->name}}</td>
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                         @if($news->feature)
                             <td>Yes <a class="btn btn-outline-danger" href="{{route('remove.featured', $news->slug)}}">Remove</a>
                             </td>
@@ -67,6 +70,7 @@
                         <td>
                             <a href="{{route('news.edit', $news->slug)}}" class="btn btn-xs" title="Details & Edit"><i class="fa fa-pen"></i></a>
                         </td>
+                        @endif
 
                     </tr>
                 @endforeach

@@ -110,24 +110,28 @@
                   <span>Gallery</span>
               </a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{{route('contact.list')}}" role="button">
-                  <i class="fa fa-paper-plane"></i>
-                  <span>Contact Mails</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{{route('ad.list')}}" role="button">
-                  <i class="fa fa-link"></i>
-                  <span>Advertisement</span>
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="{{route('user.list')}}" role="button">
-                  <i class="fa fa-user-tie"></i>
-                  <span>User</span>
-              </a>
-          </li>
+          @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
+              <li class="nav-item">
+                  <a class="nav-link" href="{{route('contact.list')}}" role="button">
+                      <i class="fa fa-paper-plane"></i>
+                      <span>Contact Mails</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{route('ad.list')}}" role="button">
+                      <i class="fa fa-link"></i>
+                      <span>Advertisement</span>
+                  </a>
+              </li>
+              @if(\Illuminate\Support\Facades\Auth::user()->role_id==1)
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{route('user.list')}}" role="button">
+                          <i class="fa fa-user-tie"></i>
+                          <span>User</span>
+                      </a>
+                  </li>
+              @endif
+          @endif
         </li>
 {{--        <li class="nav-item dropdown">--}}
 {{--            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}

@@ -15,7 +15,9 @@
                 <tr>
                     <th>S.N.</th>
                     <th>Category</th>
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                     <th>Action</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -23,9 +25,11 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{$category->name}}</td>
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                         <td>
                             <a href="{{route('category.edit', $category)}}" title="Detail & Edit" class="btn btn-xs"><i class="fa fa-pen"></i></a>
                         </td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>
