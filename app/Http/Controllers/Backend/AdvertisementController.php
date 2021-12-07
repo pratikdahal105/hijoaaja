@@ -70,8 +70,9 @@ class AdvertisementController extends Controller
 
     public function adDelete(Request $request){
         $ad = Advertisement::where('id', $request->id)->first();
+        File::delete(public_path('uploads/ads/image/').$ad->image);
         $ad->delete();
-        return redirect()->route('advertisement.list')->with('warning', 'Advertisement Deleted Successfully!');
+        return redirect()->route('ad.list')->with('warning', 'Advertisement Deleted Successfully!');
     }
 
     public function fileUpload($file, $path){

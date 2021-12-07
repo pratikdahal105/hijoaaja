@@ -3,6 +3,8 @@
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\AdvertisementController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -33,30 +35,64 @@ Route::group(['namespace'=>'frontend'], function(){
     Route::post('contact', [HomeController::class, 'contact'])->name('contact');
 });
 
+//Backend Routes
+
 Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'auth'], function(){
-    Route::get('admin', [BackendController::class, 'index'])->name('admin');
-    Route::get('news', [NewsController::class, 'index'])->name('news.list');
-    Route::get('category', [NewsController::class, 'indexCategory'])->name('category.list');
-    Route::get('video', [NewsController::class, 'indexGallery'])->name('gallery.list');
-    Route::get('gallery', [NewsController::class, 'indexVideo'])->name('video.list');
-    Route::any('categoryCreate', [NewsController::class, 'categoryCreate'])->name('category.create');
-    Route::any('categoryEdit/{category}', [NewsController::class, 'categoryEdit'])->name('category.edit');
-    Route::post('categoryDelete', [NewsController::class, 'categoryDelete'])->name('category.delete');
-    Route::any('newsCreate', [NewsController::class, 'newsCreate'])->name('news.create');
-    Route::any('newsEdit/{slug}', [NewsController::class, 'newsEdit'])->name('news.edit');
-    Route::post('addFeatured/{slug}', [NewsController::class, 'addFeatured'])->name('add.featured');
-    Route::get('removeFeatured/{slug}', [NewsController::class, 'removeFeatured'])->name('remove.featured');
-    Route::post('newsDelete', [NewsController::class, 'newsDelete'])->name('news.delete');
-    Route::any('videoCreate', [NewsController::class, 'videoCreate'])->name('video.create');
-    Route::post('videoDelete', [NewsController::class, 'videoDelete'])->name('video.delete');
-    Route::any('videoEdit/{category}', [NewsController::class, 'videoEdit'])->name('video.edit');
-    Route::any('galleryCreate', [NewsController::class, 'galleryCreate'])->name('gallery.create');
-    Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
-    Route::any('galleryEdit/{category}', [NewsController::class, 'galleryEdit'])->name('gallery.edit');
-    Route::any('ad', [AdvertisementController::class, 'index'])->name('ad.list');
-    Route::any('adCreate', [AdvertisementController::class, 'adCreate'])->name('ad.create');
-    Route::post('adDelete', [AdvertisementController::class, 'adDelete'])->name('ad.delete');
-    Route::any('adEdit/{category}', [AdvertisementController::class, 'adEdit'])->name('ad.edit');
+
+    Route::group(['name'=>'dashboard'], function(){
+        Route::get('admin', [BackendController::class, 'index'])->name('admin');
+    });
+
+    Route::group(['name'=>'category'], function(){
+        Route::get('category', [NewsController::class, 'indexCategory'])->name('category.list');
+        Route::any('categoryCreate', [NewsController::class, 'categoryCreate'])->name('category.create');
+        Route::any('categoryEdit/{category}', [NewsController::class, 'categoryEdit'])->name('category.edit');
+        Route::post('categoryDelete', [NewsController::class, 'categoryDelete'])->name('category.delete');
+    });
+
+    Route::group(['name'=>'news'], function(){
+        Route::get('news', [NewsController::class, 'index'])->name('news.list');
+        Route::any('newsCreate', [NewsController::class, 'newsCreate'])->name('news.create');
+        Route::any('newsEdit/{slug}', [NewsController::class, 'newsEdit'])->name('news.edit');
+        Route::post('addFeatured/{slug}', [NewsController::class, 'addFeatured'])->name('add.featured');
+        Route::get('removeFeatured/{slug}', [NewsController::class, 'removeFeatured'])->name('remove.featured');
+        Route::post('newsDelete', [NewsController::class, 'newsDelete'])->name('news.delete');
+    });
+
+    Route::group(['name'=>'video'], function(){
+        Route::get('video', [NewsController::class, 'indexGallery'])->name('gallery.list');
+        Route::any('videoCreate', [NewsController::class, 'videoCreate'])->name('video.create');
+        Route::post('videoDelete', [NewsController::class, 'videoDelete'])->name('video.delete');
+        Route::any('videoEdit/{category}', [NewsController::class, 'videoEdit'])->name('video.edit');
+    });
+
+    Route::group(['name'=>'gallery'], function(){
+        Route::get('gallery', [NewsController::class, 'indexVideo'])->name('video.list');
+        Route::any('galleryCreate', [NewsController::class, 'galleryCreate'])->name('gallery.create');
+        Route::post('galleryDelete', [NewsController::class, 'galleryDelete'])->name('gallery.delete');
+        Route::any('galleryEdit/{category}', [NewsController::class, 'galleryEdit'])->name('gallery.edit');
+    });
+
+    Route::group(['name'=>'contact'], function(){
+        Route::get('contact', [ContactController::class, 'index'])->name('contact.list');
+        Route::get('details/{id}', [ContactController::class, 'messageDetail'])->name('contact.detail');
+        Route::get('notSeen/{id}', [ContactController::class, 'messageNotSeen'])->name('contact.not.seen');
+        Route::post('sendMail', [ContactController::class, 'mailSend'])->name('contact.send.mail');
+    });
+
+    Route::group(['name'=>'advertisement'], function(){
+        Route::any('ad', [AdvertisementController::class, 'index'])->name('ad.list');
+        Route::any('adCreate', [AdvertisementController::class, 'adCreate'])->name('ad.create');
+        Route::post('adDelete', [AdvertisementController::class, 'adDelete'])->name('ad.delete');
+        Route::any('adEdit/{category}', [AdvertisementController::class, 'adEdit'])->name('ad.edit');
+    });
+
+    Route::group(['name'=>'user'], function(){
+        Route::get('user', [UserController::class, 'index'])->name('user.list');
+        Route::any('userCreate', [UserController::class, 'userCreate'])->name('user.create');
+        Route::post('userDelete', [UserController::class, 'userDelete'])->name('user.delete');
+        Route::any('userEdit/{user}', [UserController::class, 'userEdit'])->name('user.edit');
+    });
 });
 
 //Auth Routes

@@ -9,7 +9,7 @@
                 @include('layouts.message')
                 <form class="form" action="{{route('contact')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="check" />
+                    <input type="hidden" name="check"/>
 {{--                    <!-- Name input-->--}}
 {{--                    <div class="form-floating mb-3">--}}
 {{--                        <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />--}}

@@ -111,7 +111,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{route('video.list')}}" role="button">
+              <a class="nav-link" href="{{route('contact.list')}}" role="button">
                   <i class="fa fa-paper-plane"></i>
                   <span>Contact Mails</span>
               </a>
@@ -123,7 +123,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{route('video.list')}}" role="button">
+              <a class="nav-link" href="{{route('user.list')}}" role="button">
                   <i class="fa fa-user-tie"></i>
                   <span>User</span>
               </a>

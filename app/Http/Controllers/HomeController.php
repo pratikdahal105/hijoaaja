@@ -33,6 +33,7 @@ class HomeController extends Controller
 
     public function newsDetail($slug){
         $news = News::where('slug', $slug)->first();
+        $news->increment('views');
         return view('pages.newsDetail', compact('news'));
     }
 
@@ -52,6 +53,11 @@ class HomeController extends Controller
             return view('pages.contact');
         }
         if($request->isMethod('post')){
+            $request->validate([
+                'email' => 'required',
+                'subject' => 'required',
+                'message' => 'required',
+            ]);
             if ($request->check == null){
                 $conatct = new Contact();
                 $data['subject'] = $request->subject;

@@ -15,11 +15,11 @@
                 <div class="card text-white bg-primary o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fas fa-fw fa-list"></i>
+                            <i class="fas fa-fw fa-envelope"></i>
                         </div>
-                        <div class="mr-5">Pending Employer Request:</div>
+                        <div class="mr-5">Unread Emails: {{$emails}}</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="">
+                    <a class="card-footer text-white clearfix small z-1" href="{{route('contact.list')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -31,11 +31,11 @@
                 <div class="card text-white bg-danger o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fas fa-fw fa-list"></i>
+                            <i class="fas fa-fw fa-newspaper"></i>
                         </div>
-                        <div class="mr-5">Pending Employee Request:</div>
+                        <div class="mr-5">Total News Views: {{$views}}</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="">
+                    <a class="card-footer text-white clearfix small z-1" href="{{route('news.list')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -49,9 +49,9 @@
                         <div class="card-body-icon">
                             <i class="fas fa-fw fa-list"></i>
                         </div>
-                        <div class="mr-5">All Employer Request:</div>
+                        <div class="mr-5">Active Advertisement: {{$advertisement}}</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="">
+                    <a class="card-footer text-white clearfix small z-1" href="{{route('ad.list')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                   <i class="fas fa-angle-right"></i>
@@ -63,11 +63,11 @@
                 <div class="card text-white bg-dark o-hidden h-100">
                     <div class="card-body">
                         <div class="card-body-icon">
-                            <i class="fas fa-fw fa-list"></i>
+                            <i class="fas fa-fw fa-user"></i>
                         </div>
-                        <div class="mr-5">All Employee Request:</div>
+                        <div class="mr-5">Total Admins: {{$user}}</div>
                     </div>
-                    <a class="card-footer text-white clearfix small z-1" href="">
+                    <a class="card-footer text-white clearfix small z-1" href="{{route('user.list')}}">
                         <span class="float-left">View Details</span>
                         <span class="float-right">
                   <i class="fas fa-angle-right"></i>

@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{$ad->url}}</td>
-                        <td>{{$ad->url}}</td>
+                        <td><img src="{{asset('uploads/ads/image/'.$ad->image)}}" width="200"  height="200" alt="{{$ad->image}}"></td>
                         <td>
                             @if($ad->status == 1)
                                 Active
