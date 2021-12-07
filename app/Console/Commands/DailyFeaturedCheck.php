@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Featured;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class DailyFeaturedCheck extends Command
 {
@@ -46,6 +47,7 @@ class DailyFeaturedCheck extends Command
                 $feature->delete();
             }
         }
+        Log::info('Featured Cleared');
         return 0;
     }
 }
