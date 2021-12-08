@@ -84,4 +84,28 @@ class UserController extends Controller
         return redirect()->route('user.list')->with('warning', 'User Deleted Successfully!');
     }
 
+    public function passwordChange(Request $request){
+        if ($request->isMethod('get')) {
+            return view($this->path . 'user.changePassword');
+        }
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'old_password' => 'required',
+                'password' => 'required|confirmed|min:6',
+            ]);
+//            dd($request->all());
+            $user = new User();
+            if(Hash::check($request->old_password, Auth::user()->password)){
+                $data['password'] = Hash::make($request->password);
+                if($user->where('id', Auth::user()->id)->update($data)){
+                    return redirect()->back()->with('success', 'password update successful!');
+                }
+            }
+            else{
+                return redirect()->back()->with('error', 'Password verification failed!');
+            }
+        }
+    }
+
 }

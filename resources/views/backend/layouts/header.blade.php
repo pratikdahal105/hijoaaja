@@ -64,7 +64,7 @@
                   <i class="fas fa-user-circle fa-fw"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="#">Change Password</a>
+                  <a class="dropdown-item" href="{{route('user.password')}}">Change Password</a>
                   <div class="dropdown-divider"></div>
                   <form action="{{ url('/logout') }}" method="post">
                       <li><button class="dropdown-item" type="submit">Logout</button></li>

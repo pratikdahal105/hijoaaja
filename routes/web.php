@@ -92,6 +92,7 @@ Route::group(['namespace'=>'Backend', 'prefix' => 'Backend', 'middleware' => 'au
         Route::any('userCreate', [UserController::class, 'userCreate'])->name('user.create');
         Route::post('userDelete', [UserController::class, 'userDelete'])->name('user.delete');
         Route::any('userEdit/{user}', [UserController::class, 'userEdit'])->name('user.edit');
+        Route::any('changePassword', [UserController::class, 'passwordChange'])->name('user.password');
     });
 });
 
