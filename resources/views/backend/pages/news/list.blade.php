@@ -16,7 +16,7 @@
                     <th>S.N.</th>
                     <th>Title</th>
                     <th>Views</th>
-                    <th>Category</th>
+                    <th>Status</th>
                     @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                     <th>Featured?</th>
                     <th>Action</th>
@@ -29,7 +29,13 @@
                         <td>{{++$key}}</td>
                         <td>{{$news->title}}</td>
                         <td>{{$news->views}}</td>
-                        <td>{{$news->category->name}}</td>
+                        <td>
+                            @if($news->status == 1)
+                                Active
+                            @else
+                                Inactive
+                            @endif
+                        </td>
                         @if(\Illuminate\Support\Facades\Auth::user()->role_id==2 || \Illuminate\Support\Facades\Auth::user()->role_id==1)
                         @if($news->feature)
                             <td>Yes <a class="btn btn-outline-danger" href="{{route('remove.featured', $news->slug)}}">Remove</a>
@@ -69,6 +75,7 @@
                         @endif
                         <td>
                             <a href="{{route('news.edit', $news->slug)}}" class="btn btn-xs" title="Details & Edit"><i class="fa fa-pen"></i></a>
+                            <a href="{{route('news.detail', $news->slug)}}" target="_blank" class="btn btn-xs" title="News Preview"><i class="fa fa-eye"></i></a>
                         </td>
                         @endif
 

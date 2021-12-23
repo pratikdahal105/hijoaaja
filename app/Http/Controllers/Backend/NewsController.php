@@ -72,6 +72,7 @@ class NewsController extends Controller
                 $data['summary'] = $request->summary;
                 $data['body'] = $request->body;
                 $data['publish_date'] = $request->publish_date;
+                $data['status'] = $request->status;
                 $data->update();
                 return redirect()->route('news.list')->with('success', 'News Edited Successfully!');
             }catch (\Exception $e){

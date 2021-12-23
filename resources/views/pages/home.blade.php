@@ -72,7 +72,7 @@
                 </div>
                 <hr class="my-4" />
             @endif
-            @else
+            @elseif($key >= 1)
                     <!-- Post preview-->
                         <div class="post-preview" id="{{$news->news->slug}}">
                             <a href="{{route('news.detail',$news->news->slug)}}">

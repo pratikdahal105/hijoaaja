@@ -43,6 +43,19 @@
         <label for="">Publish Date <span style="color: red">*</span></label>
         <input type="date" class="form-control" id="publish_date" name="publish_date" value="@if($news){{$news->publish_date}}@else{{old('publish_date')}}@endif" required>
     </div>
+    @if($news)
+        <div class="form-group col-md-12">
+            <select class="form-control " id="status" name="status" required>
+                @if($news->status == 1)
+                    <option value="1" selected>Active</option>
+                    <option value="0">Inactive</option>
+                @else
+                    <option value="1">Active</option>
+                    <option value="0" selected>Inactive</option>
+                @endif
+            </select>
+        </div>
+    @endif
 </div>
 @if($news)
     <button type="submit" class="btn btn-primary">Update</button>

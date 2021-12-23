@@ -20,6 +20,7 @@ class HomeController extends Controller
         $news_data = Featured::whereDate('till', '>=', $dt)
             ->join('news', 'news.id', '=', 'featured.news_id')
             ->orderBy('news.publish_date', 'DESC')
+            ->where('news.status', 1)
             ->get();
         $videos = Videos::orderBy('publish_date', 'DESC')->get();
         return view('pages.home', compact('news_data', 'videos', 'gallerys'));
@@ -27,7 +28,7 @@ class HomeController extends Controller
 
     public function newsAll(){
         $category = Category::all();
-        $news_data = News::with('category')->orderBy('created_at', 'DESC')->get();
+        $news_data = News::with('category')->where('status', 1)->orderBy('created_at', 'DESC')->get();
         return view('pages.news', compact('news_data', 'category'));
     }
 
@@ -39,7 +40,7 @@ class HomeController extends Controller
 
     public function newsFilter($category){
         $category = Category::where('name', $category)->first();
-        $news_data = News::where('category_id', $category->id)->orderBy('publish_date', 'DESC')->get();
+        $news_data = News::where('category_id', $category->id)->where('status', 1)->orderBy('publish_date', 'DESC')->get();
         $cat = Category::all();
         return view('pages.newsFilter', compact('news_data', 'cat', 'category'));
     }
